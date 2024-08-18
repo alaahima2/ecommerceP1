@@ -1,0 +1,108 @@
+<!-- <p>register works!</p> -->
+
+<div class="w-75 mx-auto p-2">
+
+    <h1 class="h3 mt-3">Register Now:</h1>
+    <form [formGroup]="registerForm" (ngSubmit)="submitRegister()">
+     
+        <div class="my-3">
+            <label for="">name :</label>
+            <input formControlName="name" type="text" class="form-control">
+            @if(registerForm.get('name')?.errors && registerForm.get('name')?.touched){
+                <div class="bg-danger p-1 text-white rounded-2">
+
+                    @if(registerForm.get('name')?.errors?.['required']){
+                        <p>Name Is required</p>
+                    }
+                   @else if(registerForm.get('name')?.errors?.['minlength']){
+                    <p>Name must contain at least 3 characters</p>
+                   }
+                   @else if(registerForm.get('name')?.errors?.['maxlength']){
+                    <p>Name must contain at less than 8 characters</p>
+                   }
+                   </div>
+            }
+
+
+        </div>
+
+
+        <div class="my-3">
+            <label for="">email :</label>
+            <input formControlName="email" type="email" class="form-control">
+            @if(registerForm.get('email')?.errors && registerForm.get('email')?.touched){
+                <div class="bg-danger p-1 text-white rounded-2">
+
+                    @if(registerForm.get('email')?.errors?.['required']){
+                        <p>E-mail Is required</p>
+                    }
+                   @else if(registerForm.get('email')?.errors?.['email']){
+                    <p>Please enter valid e-mail</p>
+                   }
+                
+                   </div>
+            }
+        </div>
+
+        <div class="my-3">
+            <label for="">phone :</label>
+            <input   formControlName="phone"    type="tel" class="form-control">
+
+            @if(registerForm.get('phone')?.errors && registerForm.get('phone')?.touched){
+                <div class="bg-danger p-1 text-white rounded-2">
+
+                    @if(registerForm.get('phone')?.errors?.['required']){
+                        <p>phone Is required</p>
+                    }
+                   @else if(registerForm.get('phone')?.errors?.['pattern']){
+                    <p>please enter valid mobile number</p>
+                   }
+                   </div>
+            }
+            
+        </div>
+
+        <div class="my-3">
+            <label for="">password :</label>
+            <input formControlName="password" type="text" class="form-control">
+
+            @if(registerForm.get('password')?.errors && registerForm.get('password')?.touched){
+                <div class="bg-danger p-1 text-white rounded-2">
+
+                    @if(registerForm.get('password')?.errors?.['required']){
+                        <p>password Is required</p>
+                    }
+                   @else if(registerForm.get('password')?.errors?.['pattern']){
+                    <p>password must start with capital Letter and contains numbers and min lenght is 8</p>
+                   }
+                   </div>
+            }
+            
+        </div>
+
+
+        <div class="my-3">
+            <label for="">rePassword :</label>
+            <input formControlName="rePassword" type="text" class="form-control">
+            @if(registerForm.get('rePassword')?.errors && registerForm.get('rePassword')?.touched){
+                <div class="bg-danger p-1 text-white rounded-2">
+
+                    @if(registerForm.get('rePassword')?.errors?.['required']){
+                        <p>please Retype your password</p>
+                    }
+
+                    @else if(registerForm.get('rePassword')?.errors?.['mismatch']){
+                        <p>password mismatch </p>
+
+                    }
+                 
+                   </div>
+            }
+
+
+        </div>
+           <button  [disabled]="registerForm.invalid"   class="btn bg-success text-white ms-auto d-block">Register</button>
+    </form>
+
+
+</div>
